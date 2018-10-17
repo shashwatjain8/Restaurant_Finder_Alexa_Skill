@@ -21,7 +21,6 @@ lat = g.latlng[0]
 lon = g.latlng[1]
 
 def sendnear():
-	global lat, lon
     baseurl='https://developers.zomato.com/api/v2.1/geocode?lat=%f&lon=%f' %(lat,lon)
     header = {"User-agent": "curl/7.43.0", "Accept": "application/json", "user_key": "501bbf545d951052f8777581b5750dcd"}
     response = requests.get(baseurl, headers=header)
