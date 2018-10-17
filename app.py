@@ -16,8 +16,12 @@ ask = Ask(app, '/restaurantfinder')
 
 Zomatokey='501bbf545d951052f8777581b5750dcd'
 
+g = geocoder.ip('me')
+	lat = g.latlng[0]
+	lon = g.latlng[1]
 
-def sendnear(lat , lon):
+def sendnear():
+	global lat, lon
     baseurl='https://developers.zomato.com/api/v2.1/geocode?lat=%f&lon=%f' %(lat,lon)
     header = {"User-agent": "curl/7.43.0", "Accept": "application/json", "user_key": "501bbf545d951052f8777581b5750dcd"}
     response = requests.get(baseurl, headers=header)
@@ -28,7 +32,7 @@ def sendnear(lat , lon):
 
 @app.route('/')
 def homepage():
-    return 'Welcome to Restaurant Finder'
+    return 'Welcome to Restaurant Finder' + str(g.latlng[1])
 
 @ask.launch
 def start_skill():
@@ -38,10 +42,7 @@ def start_skill():
 @ask.intent("NumberIntent",convert = {"number" : int})
 def team_intent(number):
 	#team = intent['slots']['teamname']
-	g = geocoder.ip('me')
-	lat = g.latlng[0]
-	lon = g.latlng[1]
-	g =  sendnear(lat, lon)
+	g =  sendnear()
 	count =0
 	message = "Here are some places i could find...."
 	for x in range(len(g['nearby_restaurants'])):
