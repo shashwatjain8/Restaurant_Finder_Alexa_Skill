@@ -17,8 +17,8 @@ ask = Ask(app, '/restaurantfinder')
 Zomatokey='501bbf545d951052f8777581b5750dcd'
 
 g = geocoder.ip('me')
-	lat = g.latlng[0]
-	lon = g.latlng[1]
+lat = g.latlng[0]
+lon = g.latlng[1]
 
 def sendnear():
 	global lat, lon
