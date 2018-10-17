@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 import geocoder
-#import json
+import json
 
 
 app = Flask(__name__)
@@ -21,8 +21,6 @@ def sendnear(lat , lon):
     baseurl='https://developers.zomato.com/api/v2.1/geocode?lat=%f&lon=%f' %(lat,lon)
     header = {"User-agent": "curl/7.43.0", "Accept": "application/json", "user_key": "501bbf545d951052f8777581b5750dcd"}
     response = requests.get(baseurl, headers=header)
-    print baseurl
-    print str(lat)
     g=response.json()
     # for x in range(len(g['nearby_restaurants'])):
     #     print g['nearby_restaurants'][x]['restaurant']['name']      
@@ -80,4 +78,4 @@ def help_Intent():
     return question(message)
 
 if __name__ == '__main__':
-    app.run(debug = True ,threaded = True)
+    app.run(threaded = True)
