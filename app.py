@@ -4,7 +4,6 @@ from flask_ask import Ask, statement, question, session
 from flask import Flask
 from flask import request
 from flask import jsonify
-import urllib2
 import requests
 from bs4 import BeautifulSoup
 

@@ -6,5 +6,4 @@ cryptography<2.2
 beautifulsoup4
 requests
 geocoder
-urllib2
 json
