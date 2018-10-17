@@ -41,9 +41,11 @@ def start_skill():
 @ask.intent("NumberIntent",convert = {"number" : int})
 def team_intent(number):
 	#team = intent['slots']['teamname']
+	if number == 0:
+		return question('Sorry.. please say a non zero number')
 	g =  sendnear()
 	count =0
-	message = "Here are some places i could find...."
+	message = "Here are some places that I could find...."
 	for x in range(len(g['nearby_restaurants'])):
 		count = count + 1
 		message = message + g['nearby_restaurants'][x]['restaurant']['name'] + "....."
